@@ -17,4 +17,4 @@ you have two tasks:
 1. Write some test cases for `basic_maths.py`. These tests should be scripted - pytest would be a good tool but you can do whatever you want!
 2. Write some test cases for `basic_maths_gui.py`. These tests could be manually executed, but should be written using an established test framework such as cucumber
 
-Please fork this repository to a **private** branch, include the test cases there, and add me as a colloborator so i can review.
+Please fork this repository to a **private** branch, include the test cases there, and add `TimMontanaro` and `bwheelz36` as a colloborators so we can review.
