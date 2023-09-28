@@ -1,20 +1,24 @@
 # Simple Maths + GUI
 
-## set up
+## Set up
 
 - Tested using python 3.11
 - to install all requirements: `pip install -r requirements.txt` (advisable to use a new virtual environment)
 
-## test task
+## Overview
 
-This code consists of two modules:
+This code consists of a few options so please choose the one you are most comfortable with. The intent is to limit time it to a maximum of 2 hours, after that please just submit what you have and explain your thought process and what you would do in addition to what you submit. 
+**You will not be marked down if you submit incomplete work**.
 
-1. `basic_maths`: an extremely stupid implementation of a some basic maths functions.
-2. `basic_maths_gui`: a basic QT GUI that uses `basic_maths` as the backend.
+## Options
+There are 2 options for testing, both options have the same functionality:
 
-You have two tasks:
+1. `app.py`: A web-based application using Flask as a backend.
+2. `basic_maths_gui.py`: a basic QT GUI that uses `basic_maths.py` as the backend.
 
-1. Write some test cases for `basic_maths.py`. These tests should be scripted - pytest would be a good tool but you can do whatever you want!
-2. Write some test cases for `basic_maths_gui.py`. These tests could be manually executed, but should be written using an established test framework such as Gherkin language.
+## Task
+You are to write some automated test cases for one of the options above. You are not expected to have complete test coverage, but you should comment to explain what is missing.
+
+An option could be a Feature and Step file in accordance with Cypress.io but many alternatives exist such as using PyTest or other frameworks. Please take your pick, just be prepared to explain it.
 
 Please clone this repository with settings on **private**, include the test cases there, and add `TimMontanaro` and `bwheelz36` as a collaborators so we can review.
