@@ -1,61 +1,36 @@
-import sys
-import basic_maths as bm
+import time
+from behave import given, when, then
 
-from PySide6.QtWidgets import (
-    QApplication,
-    QLabel,
-    QLineEdit,
-    QMainWindow,
-    QPushButton,
-    QVBoxLayout,
-    QWidget,
-)
+from basic_maths_gui import MyApp  # Import GUI application
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
+@given("I launch the Basic Math GUI")
+def launch_app(context):
+    context.app = MyApp()  # Instantiate GUI application
+    context.app.show()
+    time.sleep(1)  # Adjust this time as needed for GUI to load
 
-        self.setWindowTitle("Widgets App")
+@when('I enter "{value}" into the first input field')
+def enter_value_into_first_input(context, value):
+    context.app.enter_value_into_first_input(value)
 
-        layout = QVBoxLayout()
+@when('I enter "{value}" into the second input field')
+def enter_value_into_second_input(context, value):
+    context.app.enter_value_into_second_input(value)
 
-        self._number_1 = QLineEdit('1')
-        layout.addWidget(self._number_1)
+@when('I select "{operator}" from the operator dropdown')
+def select_operator(context, operator):
+    context.app.select_operator(operator)
 
-        self._operator = QLineEdit('+')
-        layout.addWidget(self._operator)
+@when('I click the "Calculate" button')
+def click_calculate(context):
+    context.app.click_calculate()
 
-        self._number_2 = QLineEdit('1')
-        layout.addWidget(self._number_2)
+@then('I should see "{expected_result}" as the result')
+def verify_result(context, expected_result):
+    result = context.app.get_result()
+    assert result == expected_result, f"Expected result: {expected_result}, Actual result: {result}"
 
-        btn = QPushButton("Calculate")
-        btn.clicked.connect(self._basic_maths)
-        layout.addWidget(btn)
-
-        self._label = QLabel("")
-        layout.addWidget(self._label)
-
-
-        central_widget = QWidget()
-        central_widget.setLayout(layout)
-
-        self.setCentralWidget(central_widget)
-
-    def _basic_maths(self):
-
-        if self._operator.text() == '+':
-            result = bm.add_two_numbers(self._number_1.text(), self._number_2.text())
-        elif self._operator.text() == '-':
-            result = bm.subtract_two_numbers(self._number_1.text(), self._number_2.text())
-        elif self._operator.text() == '*':
-            result = bm.multiply_two_numbers(self._number_1.text(), self._number_2.text())
-        else:
-            result = 'error; allowed operators are +, -, or *'
-        self._label.setText(result)
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    app.exec()
+@then('I should see an error message')
+def verify_error_message(context):
+    error_message = context.app.get_error_message()
+    assert "Invalid input" in error_message
